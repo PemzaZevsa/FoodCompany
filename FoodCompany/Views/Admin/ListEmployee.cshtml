@@ -1,0 +1,64 @@
+﻿@model List<Employee>;
+@if (TempData["success"] != null)
+{
+    <h2 style="color:green;font-weight:bold;">@TempData["success"]</h2>
+}
+<form id="list_plan_form" method="post" class="row">
+    <div class="conteiner">
+        <div class="row pt-4">
+            <div class="col-6">
+                <h2>
+                    Користувачі
+                </h2>
+            </div>
+            <div class="col-6 text-end">
+                <a asp-controller="Admin" asp-action="AddEmployee" class="btn btn-dark">
+                    <i class="bi bi-plus-circle-fill"></i> Додати користувача
+                </a>
+            </div>
+        </div>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Логін</th>
+                <th>Пароль</th>
+                <th>Заробітна плата</th>
+                <th>Посада</th>
+                <th>Дата найму</th>
+                <th>Редагувати</th>
+                <th>Видалити</th>
+            </tr>
+            @foreach (var employee in Model)
+            {
+                <tr>
+                    <td>@employee.Login</td>
+                    <td>@employee.Password</td>
+                    <td>@employee.Salary</td>
+                    <td>@employee.IdPositionNavigation.Name</td> <!-- Выводим название должности -->
+                    <td>@employee.HireDate</td>
+                    <td>
+                        <a asp-controller="Admin" asp-action="EditEmployee" asp-route-id="@employee.IdEmployee" class="btn btn-info mx-2">
+                            <i class="bi bi-opencollective"></i>Редагувати
+                        </a>
+                    </td>
+                    <td>
+                        <a href="javascript:void(0);"
+                           class="btn btn-danger mx-2"
+                           onclick="confirmDelete('@Url.Action("DeleteEmployee", "Admin", new { id = employee.IdEmployee })')">
+                            <i class="bi bi-opencollective"></i> Видалити
+                        </a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        function confirmDelete(url) {
+            if (confirm('Вы уверены, что хотите удалить этого пользователя?')) {
+                window.location.href = url;
+            }
+        }
+    </script>
+}

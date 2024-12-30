@@ -1,0 +1,48 @@
+﻿@model Employee;
+
+<form method="post" class="row">
+    <div class="border p-3 mt-4">
+
+        <div class="row pb-2">
+            <h2>Змінити картку користувача</h2>
+            <hr />
+        </div>
+
+        <div asp-validation-summary="All"></div>
+
+        <div class="mb-3 row p-1">
+            <label asp-for="IdEmployee" class="p-0"></label>
+            <input asp-for="IdEmployee" class="form-control" />
+            <span asp-validation-for="IdEmployee" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Login" class="p-0"></label>
+            <input asp-for="Login" class="form-control" />
+            <span asp-validation-for="Login" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Password" class="p-0"></label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Salary" class="p-0"></label>
+            <input asp-for="Salary" class="form-control" />
+            <span asp-validation-for="Salary" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="IdPosition" class="p-0"></label>
+            <input asp-for="IdPosition" class="form-control" />
+        </div>
+        <div class="row pt-2">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-dark form-control">Змінити</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Admin" asp-action="ListEmployee" class="btn btn-outline-dark border form-control">
+                    До списку користувачів
+                </a>
+            </div>
+        </div>
+    </div>
+</form>
